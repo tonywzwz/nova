@@ -1,23 +1,23 @@
-versão: '3.8'
+version: '3.8'
 
-serviços:
-  banco de dados:
-    imagem: mysql:8.0
-    nome_do_container: mysql_db
-    ambiente:
-      SENHA_ROOT_MYSQL: senha_root
-      BANCO_DE_DADOS_MYSQL: meu_banco
-      MYSQL_USER: usuário
-      SENHA_MYSQL: senha_do_usuário
-    portas:
+services:
+  db:
+    image: mysql:8.0
+    container_name: mysql_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: meu_banco
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user_password
+    ports:
       - "3306:3306"
     volumes:
       - db_data:/var/lib/mysql
-    redes:
-      - rede de aplicativos
+    networks:
+      - app_network
 
 volumes:
-  dados_do_banco_de_dados:
+  db_data:
 
-redes:
-  rede_de_aplicativos:
+networks:
+  app_network:
